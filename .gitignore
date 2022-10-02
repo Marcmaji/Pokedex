@@ -1,0 +1,6 @@
+buildozer.spec
+.buildozer
+bin
+venv
+__pychache__
+.idea

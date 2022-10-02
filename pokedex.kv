@@ -1,0 +1,120 @@
+<MyRoot>:
+
+    pokedex_number: pokedex_number
+    pokedex_entry: pokedex_entry
+    pokedex_name: pokedex_name
+    pokedex_sprite: pokedex_sprite
+
+    #:set scale_factor 11
+
+    canvas.before:
+        Color:
+            rgba: (239/255, 43/255, 52/255, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint: 0.8, 0.3
+            pos_hint: {'center_x': 0.5}
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: 1, 0.7
+                pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+                canvas.before:
+                    Color:
+                        rgba: (1, 245/255, 232/255, 1)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    id: pokedex_number
+                    font_name: 'resources/ui_assets/Pokemon Classic.ttf'
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'top'
+                    color: 0,0,0,1
+                Label:
+                    id: pokedex_name
+                    text_size: self.size
+                    halign: 'center'
+                    valign: 'top'
+                    font_name: 'resources/ui_assets/Pokemon Classic.ttf'
+                    color: 0,0,0,1
+
+        BoxLayout:
+            size_hint: 0.8, 1
+            pos_hint: {'center_x': 0.5}
+            canvas.before:
+                Color:
+                    rgba: (17/255, 26/255, 19/255, 1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            canvas.after:
+                BorderImage:
+                    source: 'resources/ui_assets/Screen.png'
+
+                    pos: self.x-scale_factor, self.y-scale_factor
+                    size: self.width+scale_factor*2, self.height+scale_factor*2
+            SpriteButton:
+                id: pokedex_sprite
+                allow_stretch: True
+                keep_ratio: True
+                anim_delay: 0.1
+
+        BoxLayout:
+            orientation: "vertical"
+            BoxLayout:
+                size_hint: 0.8, 0.9
+                pos_hint: {'center_x': 0.5}
+                ScrollView:
+                    id: scrlv
+                    size_hint: 1, 0.9
+                    EntryText:
+                        id: pokedex_entry
+                        readonly: True
+                        disabled: True
+                        font_name: 'resources/ui_assets/Pokemon Classic.ttf'
+                        size_hint: 1, None
+                        height: max(self.minimum_height, scrlv.height)
+                        on_press: root.get_next_entry()
+                        background_normal: ''
+                        background_color: 62/255, 222/255, 209/255, 1
+                        padding: [20, 0]
+
+            BoxLayout:
+                size_hint: 1, 0.3
+                pos_hint: {'center_x': 0.5}
+                Button:
+                    text: "<"
+                    font_size: "50dp"
+                    on_press: root.get_previous_pkmn()
+                    size_hint: 0.3, 1
+                    background_color: 0, 0, 0, 0
+                TextInput:
+                    id: search_pkmn_box
+                    hint_text: 'Search a Pokémon'
+                    write_tab: False
+                    multiline: False
+                    font_size: '11dp'
+                    size_hint: 1, 0.7
+                    pos_hint: {'center_y': 0.5}
+                    on_text_validate: root.search_pokemon()
+                    font_name: 'resources/ui_assets/Pokemon Classic.ttf'
+                    halign: 'center'
+                    padding: [10, self.height / 2.0 - (self.line_height / 2.0) * len(self._lines)]
+
+                ImageButton:
+                    size_hint: 0.2, 1
+                    on_press: root.get_next_pkmn_sound()
+                    source: 'resources/ui_assets/sound-logo-white.png'
+                    height:  30
+                Button:
+                    text: ">"
+                    font_size: "50dp"
+                    size_hint: 0.3, 1
+                    on_press: root.get_next_pkmn()
+                    background_color: 0, 0, 0, 0
