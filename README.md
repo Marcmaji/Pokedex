@@ -2,9 +2,8 @@
 This project is a simple Pokédex that displays all the available sprites, entries and cries from
 Pokémon from Gen1 to Gen8.
 
-![Alt text](resources/readme/bulbasaur_screenshot.JPG?raw=true "Bulbasaur")
-&emsp; &emsp;
-![Alt text](resources/readme/mewtwo_screenshot.JPG?raw=true "Mewtwo")
+<img src="resources/readme/bulbasaur_screenshot.JPG" width="300"> &emsp;
+<img src="resources/readme/mewtwo_screenshot.JPG" width="300">
 
 ## Use guide
 
